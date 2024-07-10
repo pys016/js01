@@ -1,4 +1,5 @@
-const express = require("expres");
+const express = require("express");
+const path = require("path");
 const logger = require("morgan");
 const fs = require("fs");
 
@@ -7,11 +8,13 @@ const port = 3000;
 const _path = path.join(__dirname, "/");
 app.use(logger("tiny"));
 
-app.length("/", (req, res) => {
+app.get("/", (req, res) => {
+  const name = "save";
   const data = "파일내용이 작성 됨";
   res.send("파일이 저장되었습니다.");
-  fs.writeFile(_path + "/save.txt", data, (e) => {
+  fs.writeFile(_path + name + ".txt", data, (e) => {
     if (e) console.log(e); //에러시 에러 내용 출력
+    console.log(__dirname + "/save.txt");
     console.log("파일 작성이 완료되었습니다.");
   });
 });
