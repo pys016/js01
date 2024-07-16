@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 app.get("/data", (req, res) => {
   const { name, dob } = req.query;
   db.query(
-    "INSERT INTO web(id, name, dob) VALUES (?, ?)",
+    "INSERT INTO web(name, dob) VALUES (?, ?)",
     [name, dob],
     (err, result) => {
       if (err) {
