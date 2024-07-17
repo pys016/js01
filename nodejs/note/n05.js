@@ -2,7 +2,7 @@ const http = require("http"); // http 모듈 사용
 const port = 3030;
 const server = http.createServer((req, res) => {
   res.setHeader("content-type", "text/plain; charset=utf-8");
-  const jsonData = require("./jsondata.json");
+  const jsonData = require("../jsondata.json");
   console.log(1, JSON.stringify(jsonData));
   res.end(JSON.stringify(jsonData, null, 2));
 });
