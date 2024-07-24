@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가상선택자2</title>
+    <style>
+      p:first-child {
+        color: blue;
+      }
+      p:first-child:after {
+        content: " 즐거워";
+      }
+      p:before,
+      p:after {
+        content: "🐜";
+      }
+      p:nth-of-type(n + 2):nth-of-type(-n + 4) {
+        color: red;
+        display: inline;
+      }
+      p:nth-child(2) {
+        color: blueviolet !important;
+      }
+      p:nth-last-child(3):after {
+        content: "༼ つ ◕_◕ ༽つ";
+      }
+      p:last-of-type:after {
+        content: "끝났따~!!";
+      }
+    </style>
+  </head>
+  <body>
+    <p>오늘도</p>
+    <p>개미는</p>
+    <p>열심히</p>
+    <p>일을</p>
+    <p>하네~</p>
+  </body>
+</html>
