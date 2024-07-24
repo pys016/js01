@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .ex-layout {
+        display: flex;
+        flex-direction: column;
+      }
+      .menu {
+        width: 300px;
+        height: 40px;
+        border: 2px solid#09c;
+        background-color: beige;
+      }
+      .left-menu {
+        flex: 1;
+        width: 50px;
+        height: 254px;
+        border: 2px solid red;
+        background-color: rgb(218, 218, 104);
+        float: left;
+      }
+      .content {
+        flex: 1;
+        margin-left: 54px;
+        width: 250px;
+        /*border: 2px solid blue;*/
+        background-color: antiquewhite;
+      }
+      .article {
+        flex: 1;
+        width: 246px;
+        height: 202px;
+        border: 2px solid blue;
+        background-color: gainsboro;
+      }
+      .comment {
+        flex: 1;
+        width: 246px;
+        height: 50px;
+        border: 2px solid purple;
+        background-color: lightcyan;
+      }
+    </style>
+  </head>
+  <body>
+    <!--div.ex-layout>div.menu{global menu}+div.main>div.left-munu{left menu}+div.content>div.article{article}+div.comment{comment}-->
+    <div class="ex-layout">
+      <div class="menu">global menu</div>
+      <div class="main">
+        <div class="left-menu">left menu</div>
+        <div class="content">
+          <div class="article">article</div>
+          <div class="comment">comment</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
