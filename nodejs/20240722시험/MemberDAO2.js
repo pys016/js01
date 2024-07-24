@@ -16,15 +16,75 @@ app.use(
 
 app.get("/", (req, res) => {
   if (req.session.loggedIn) {
-    res.send(`
-        <h2>${req.session.username}님 안녕하세요</h2>
-        <h2>${req.session.username}님의 개인공간입니다.</h2>
-        <hr/>
-        <h3>대충 개인 데이터베이스 목록</h3>
+    res.send(`<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <style>
+      fieldset {
+        border-radius: 5px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        text-align: center;
+        height: 100vh;
+        margin: 0;
+      }
+      h1 {
+        color: #0099ff;
+        margin-bottom: 20px;
+      }
+      h3,
+      h4 {
+        display: inline;
+      }
+      h4 {
+        color: rgb(255, 0, 128);
+      }
+      .button {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #2600ff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .button:last-child {
+        background-color: rgb(255, 0, 0);
+      }
+      .button:hover {
+        background-color: rgb(0, 0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <fieldset>
+      <form action="/" method="GET">
+        <legend><h1>성공적으로 로그인 되었습니다.</h1></legend>
+        <h3>안녕하세요!</h3>
+        <h4>${req.session.username}님!</h4>
+        <br />
         <button onclick="location.href='/logout'">로그아웃</button>
+        <button onclick="location.href='/'">회원정보보기</button>
+      </form>
+    </fieldset>
+  </body>
+</html>
+
         `);
   } else {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/login.html");
   }
 });
 
@@ -41,7 +101,7 @@ app.post("/login", (req, res) => {
   console.log(idOK, pwOK, !!pwOK);
 
   if (idOK && !!pwOK) {
-    if (username === "test" && password == "1234") {
+    if (username === "people" && password == "1234") {
       req.session.loggedIn = true;
       req.session.username = username;
       res.redirect("/");
