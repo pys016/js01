@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const bt = document.getElementById("ok");
+        const modal = document.querySelector(".modal");
+        const modalbody = document.querySelector(".modal-body");
+        const indiv = document.getElementById("inDiv");
+        bt.addEventListener("click", () => modal.classList.add("show"));
+        modal.addEventListener("click", (e) => {
+          modal.classList.remove("show");
+          indiv.addEventListener("click", (event) => event.stopPropagation());
+        });
+      });
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 30px;
+      }
+      .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .modal.show {
+        display: block;
+      }
+      .modal-body {
+        position: absolute;
+        top: 20%;
+        left: 35%;
+        min-width: 250px;
+        height: 400px;
+        padding: 20px;
+        text-align: start;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- div.modal>div.modal-body>span+hr+div.modal-title>span{작성자}^span{제목:}+input+br+span{내용:} -->
+    <div class="modal">
+      <div class="modal-body">
+        <span>게시글작성</span>
+        <hr />
+        <div class="modal-title">
+          <span>작성자</span>
+        </div>
+        <div id="inDiv">
+          <span>제목:</span>
+          <input type="text" /><br />
+          <span>내용:</span><br />
+          <textarea name="" id="" cols="30" row="10"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 본문내용영역 -->
+    <h2>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nisi
+      fuga, optio ut iure temporibus rem id illum tenetur cupiditate adipisci
+      modi sapiente ea quisquam nesciunt. Reiciendis non laboriosam ullam? Esse
+      dignissimos aliquam eligendi, ut quibusdam labore aut culpa provident
+      omnis vero explicabo officiis modi cumque tenetur placeat asperiores
+      repellendus quis maiores tempora. Aut rerum laborum officiis earum ipsam
+      fugit! Dignissimos a cupiditate, accusantium repellat enim placeat labore
+      consequuntur odit voluptatibus ullam nobis ipsa ducimus magni! Amet vero
+      earum cumque? Non aliquam reprehenderit vitae a nemo esse quo nisi
+      distinctio! Sequi, alias? Exercitationem saepe at assumenda iste
+      doloremque? Dolores voluptates labore in dicta earum, repellendus maiores
+      nisi! Culpa, cumque deserunt quo voluptas reprehenderit voluptatum,
+      eligendi voluptate eos esse natus numquam! Voluptas qui quaerat minus
+      nulla. Ipsam nemo perferendis doloribus iste soluta reprehenderit
+      voluptate architecto consectetur corrupti voluptatibus sint ratione hic
+      tempora accusantium illo eveniet, omnis explicabo modi ab. Amet, dolorem.
+      Consequuntur nostrum illo aut optio minima aspernatur blanditiis cum
+      cumque minus quisquam rerum maiores sequi beatae necessitatibus iste
+      provident, amet architecto ex quidem voluptatum dolor? Unde sunt illo
+      voluptate necessitatibus. Expedita molestias distinctio impedit sapiente
+      ut exercitationem in fuga facere sunt reiciendis amet iure est quod dolor
+      at ad similique repudiandae nihil, nulla maxime maiores illum. Id quos
+      reprehenderit mollitia?
+    </h2>
+    <button id="ok">확인</button>
+  </body>
+</html>
