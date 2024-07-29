@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>??</title>
+    <title>로그인 페이지</title>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const bt = document.getElementById("ok");
         const modal = document.querySelector(".modal");
-        const modalbody = document.querySelector(".modal-body");
-        const indiv = document.getElementById("inDiv");
+        const indiv = document.querySelector(".modal-body");
+
         bt.addEventListener("click", () => modal.classList.add("show"));
+
         modal.addEventListener("click", (e) => {
-          modal.classList.remove("show");
-          indiv.addEventListener("click", (event) => event.stopPropagation());
+          if (e.target === modal) {
+            modal.classList.remove("show");
+          }
         });
       });
     </script>
@@ -26,7 +28,53 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        display: flex;
+        flex-direction: row;
       }
+
+      .wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      header {
+        height: 65px;
+        /*background-color: rgb(221, 249, 250);*/
+        text-align: center;
+        color: rgb(75, 123, 28);
+      }
+
+      nav ul {
+        height: 30px;
+        /*background-color: darkgrey;*/
+        text-align: center;
+        padding: 30px;
+        /*display: flex;*/
+        align-items: flex;
+        list-style-type: none;
+        font-size: 2rem;
+      }
+
+      li a {
+        padding: 10px;
+        margin: 0px 20px;
+        background-color: darkseagreen;
+        color: #fff;
+
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        text-decoration-line: none;
+      }
+
+      li {
+        margin: 50px;
+      }
+      .flex {
+        display: flex;
+        flex-direction: column;
+      }
+
       .modal {
         position: absolute;
         top: 0;
@@ -36,52 +84,150 @@
         display: none;
         background-color: rgba(0, 0, 0, 0.5);
       }
+
       .modal.show {
         display: block;
       }
+
       .modal-body {
+        background: url("https://i1.sndcdn.com/artworks-tYQjtgAzbqXhrznk-da3HMg-t500x500.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
         position: absolute;
         top: 20%;
-        left: 35%;
-        min-width: 250px;
-        height: 400px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 400px;
         padding: 20px;
-        text-align: start;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #fff;
       }
+
+      .modal-body h2 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .modal-body input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .modal-body button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .modal-body button:hover {
+        background-color: #0056b3;
+      }
+
+      .modal-body .reset-btn {
+        background-color: #6c757d;
+      }
+
+      .modal-body .reset-btn:hover {
+        background-color: #5a6268;
+      }
+
       .loginbt {
-        background-color: blue;
-        margin: 50px;
-        padding: 30px;
+        position: relative;
+        top: 10px;
+        left: 100px;
+        text-align: center;
       }
-      .ok {
-        margin: auto;
-        padding: 50px;
+
+      #ok {
+        background: url("https://mblogthumb-phinf.pstatic.net/20160915_276/chicjt57_1473899640601PM2LE_JPEG/luna800.600.jpg?type=w420");
+        background-size: 600px;
+        background-position: center;
+        margin: 100px;
+        padding: 90px 60px;
+        border-radius: 50%;
+        font-size: 50px;
+        color: #8a31ff;
+        display: flex;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-around;
+      }
+      .box {
+        background-color: lightblue;
+        padding: 10px;
+        margin: 5px;
+      }
+
+      footer {
+        text-align: center;
+        color: #fff;
       }
     </style>
   </head>
-
   <body>
-    <div class="modal">
-      <div class="modal-body">
-        <strong>로그인</strong>
-        <!-- <form action="/login" method="POST"> -->
-        <hr />
-        <div id="inDiv">
-          <span>제목:</span>
-          <input type="text" /><br />
-          <span>내용:</span><br />
-          <input type="text" /><br />
-          <button type="submit">로그인</button>
-          <button type="reset" class="reset-btn">다시 입력</button>
+    <div class="wrap">
+      <header>
+        <h1>게시판</h1>
+      </header>
+      <div class="modal">
+        <div class="modal-body">
+          <h2><strong>로그인</strong></h2>
+          <form action="/login" method="POST">
+            <label for="username">아이디:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="아이디"
+              required
+            />
+            <label for="pw">비밀번호:</label>
+            <input
+              type="password"
+              id="pw"
+              name="password"
+              placeholder="비밀번호"
+              required
+            />
+            <button type="submit">로그인</button>
+            <button type="reset" class="reset-btn">다시 입력</button>
+          </form>
         </div>
       </div>
     </div>
-    <h1>Very (┬┬﹏┬┬) Hard</h1>
     <div class="loginbt">
-      <button class="ok">로그인</button>
+      <button id="ok"><strong>LOGIN</strong></button>
+    </div>
+
+    <footer>
+      <span>회사소개 개인, 개인서버동작, KYS Corp.</span>
+    </footer>
+    <div class="container">
+      <div class="box">Box 1</div>
+      <div class="box">Box 2</div>
+      <div class="box">Box 3</div>
+    </div>
+    <div class="flex">
+      <nav>
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">게시글</a></li>
+          <li><a href="/mypage">마이페이지</a></li>
+        </ul>
+      </nav>
     </div>
   </body>
 </html>

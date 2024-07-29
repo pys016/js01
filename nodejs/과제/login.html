@@ -28,6 +28,61 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        display: flex;
+        flex-direction: row;
+      }
+
+      /*.wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }*/
+
+      header {
+        width: 100%;
+        height: 80px;
+        background-color: rgba(0, 0, 0, 0.5);
+        font-size: 35px;
+        text-align: center;
+        color: rgb(96, 255, 202);
+        position: relative;
+        left: 145%;
+      }
+
+      nav ul {
+        height: 30px;
+        /*background-color: darkgrey;*/
+        text-align: center;
+        padding: 30px;
+        /*display: flex;*/
+        align-items: flex;
+        list-style-type: none;
+        font-size: 2rem;
+      }
+
+      li a {
+        padding: 10px;
+        margin: 0px 20px;
+        background-color: darkseagreen;
+        color: #fff;
+
+        border-radius: 10px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        text-decoration-line: none;
+      }
+
+      li {
+        margin: 50px;
+        position: relative;
+        right: 50px;
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        right: -1000px;
+        top: 100px;
       }
 
       .modal {
@@ -98,8 +153,12 @@
       }
 
       .loginbt {
+        position: relative;
+        top: 10px;
+        left: 100px;
         text-align: center;
       }
+
       #ok {
         background: url("https://mblogthumb-phinf.pstatic.net/20160915_276/chicjt57_1473899640601PM2LE_JPEG/luna800.600.jpg?type=w420");
         background-size: 600px;
@@ -110,6 +169,16 @@
         font-size: 50px;
         color: #8a31ff;
         display: flex;
+        position: relative;
+        right: 100px;
+      }
+
+      footer {
+        position: absolute;
+        bottom: -10px;
+        left: 50px;
+        text-align: center;
+        color: #fff;
       }
     </style>
   </head>
@@ -139,9 +208,27 @@
         </form>
       </div>
     </div>
-    <h1>Very (┬┬﹏┬┬) Hard</h1>
-    <div class="loginbt">
-      <button id="ok"><strong>LOGIN</strong></button>
+    <div class="wrap">
+      <header>
+        <h1>게시판</h1>
+      </header>
+
+      <div class="loginbt">
+        <button id="ok"><strong>LOGIN</strong></button>
+      </div>
+
+      <footer>
+        <span>회사소개 개인, 개인서버동작, KYS Corp.</span>
+      </footer>
+    </div>
+    <div class="flex">
+      <nav>
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">게시글</a></li>
+          <li><a href="/mypage">마이페이지</a></li>
+        </ul>
+      </nav>
     </div>
   </body>
 </html>

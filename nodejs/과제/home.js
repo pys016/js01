@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   if (req.session.loggedIn) {
     res.sendFile(__dirname + "/profile.html");
   } else {
-    res.sendFile(__dirname + "/home.html");
+    res.sendFile(__dirname + "/login.html");
   }
 });
 

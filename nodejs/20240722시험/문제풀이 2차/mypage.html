@@ -1,32 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./reset.css" />
     <style>
-      body {
-        background: url("https://blog.kakaocdn.net/dn/TjhvS/btqBM6K3V1S/YsXvKeU0wdXICDWG2FDMCk/a1.jpg?attach=1&knm=img.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        padding-top: 8rem;
-        padding: 30px;
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: flex-start;
-      }
-
-      .card-container {
-        position: absolute;
-        top: 200px;
-        left: 200px;
-      }
       .card {
-        max-width: 400px;
-        max-height: 400px;
+        max-width: 380px;
+        height: 400px;
         background-color: #fff;
         border-radius: 2rem;
         overflow: hidden;
@@ -90,112 +71,19 @@
       .desc {
         padding: 1.5rem;
       }
-
-      .logout-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-      }
-
-      /*.wrap {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }*/
-
-      header {
-        width: 100%;
-        height: 80px;
-        background-color: rgba(0, 0, 0, 0.5);
-        font-size: 70px;
-        text-align: center;
-        color: rgb(96, 255, 202);
-        position: relative;
-        left: 190%;
-        top: 40px;
-        padding: 10px 80px;
-      }
-
-      nav ul {
-        height: 30px;
-        /*background-color: darkgrey;*/
-        text-align: center;
-        padding: 30px;
-        /*display: flex;*/
-        align-items: flex;
-        list-style-type: none;
-        font-size: 2rem;
-      }
-
-      li a {
-        padding: 10px;
-        margin: 0px 20px;
-        background-color: darkseagreen;
-        color: #fff;
-
-        border-radius: 10px;
-        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-        text-decoration-line: none;
-      }
-
-      li {
-        margin: 50px;
-        position: relative;
-        right: -100px;
-      }
-
-      .flex {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        right: -1100px;
-        top: 150px;
-      }
-
-      footer {
-        position: absolute;
-        bottom: -10px;
-        left: 50px;
-        text-align: center;
-        color: #fff;
-      }
     </style>
   </head>
-
   <body>
-    <!-- div.card>div.banner>div.profile^h2.name{PARK YEONGSEOP}+div.follow-btn>button{Follow}^div.desc{감사} -->
-    <div class="wrap">
-      <header>
-        <h1>게시판</h1>
-      </header>
-      <div class="logout-btn">
-        <button onclick="location.href='/logout'">로그아웃</button>
+    <div class="card">
+      <div class="banner">
+        <div class="profile"></div>
       </div>
-      <div class="card-container">
-        <div class="card">
-          <div class="banner">
-            <div class="profile"></div>
-          </div>
-          <h2 class="name">PARK YEONGSEOP</h2>
-          <div class="follow-btn"><button>Follow</button></div>
-          <div class="desc">
-            너무 덥고 덥고 덥다 아주 덥다 이게맞나? <br />
-            너무 어렵다 어렵고도 어렵다 이게 맞나?
-          </div>
-        </div>
+      <h2 class="name">PARK YEONGSEOP</h2>
+      <div class="follow-btn"><button>Follow</button></div>
+      <div class="desc">
+        잠와 죽을꺼같다 그래도 해야하는데 미쳤다 정신차리고 노력해서 공부해보자
+        ╰(*°▽°*)╯
       </div>
-      <footer>
-        <span>회사소개 개인, 개인서버동작, KYS Corp.</span>
-      </footer>
-    </div>
-    <div class="flex">
-      <nav>
-        <ul>
-          <li><a href="#">홈</a></li>
-          <li><a href="#">게시글</a></li>
-          <li><a href="/mypage">마이페이지</a></li>
-        </ul>
-      </nav>
     </div>
   </body>
 </html>
