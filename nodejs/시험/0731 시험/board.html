@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 50px;
+        background-color: rgb(240, 240, 192);
+      }
+
+      fieldset {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      legend {
+        background-color: rgb(240, 240, 192);
+        border: 3px solid rgba(12, 45, 78, 0.885);
+        padding: 3px 7px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input,
+      textarea {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: rgba(12, 45, 78, 0.885);
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.5s;
+      }
+
+      button:hover {
+        background-color: cadetblue;
+      }
+
+      #content {
+        height: 10rem;
+        overflow-y: auto;
+      }
+
+      .logout-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="logout-btn">
+      <button onclick="location.href='/logout'">로그아웃</button>
+    </div>
+    <fieldset>
+      <legend>게시글</legend>
+      <form action="data" id="dataForm" method="POST">
+        <label for="title">제목:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          pattern="[A-Za-z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{1,30}"
+          title="제목은 1자 이상 30자 이하의 문자와 숫자만 입력 가능합니다."
+          required
+        /><br />
+        <label for="name">작성자:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          pattern="[A-Za-z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{1,10}"
+          title="제목은 1자 이상 30자 이하의 문자와 숫자만 입력 가능합니다."
+          required
+        /><br />
+        <label for="date">작성일:</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          title="제목은 1자 이상 30자 이하의 문자와 숫자만 입력 가능합니다."
+          required
+        /><br />
+        <label for="content">내용:</label>
+        <textarea
+          type="text"
+          id="content"
+          name="content"
+          pattern="[A-Za-z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,200}"
+          title="내용은 1자 이상 200자 이하의 문자와 숫자만 입력 가능합니다."
+          required
+        ></textarea
+        ><br />
+
+        <button type="submit">제출</button>
+        <button type="reset">내용지우기</button>
+        <button type="button" onclick="location.href='/list' ">
+          리스트보기
+        </button>
+      </form>
+    </fieldset>
+  </body>
+</html>

@@ -20,7 +20,7 @@ db.connect((error) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/login.html");
+  res.sendFile(__dirname + "/index.html");
   console.log("웹에 정상 접속 하였습니다.");
 });
 

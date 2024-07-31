@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0
+        }
+
+        .wrap {
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            min-width: 760px;
+            height: 80%;
+        }
+
+        header {
+            height: 65px;
+            /* background-color: rgb(221, 249, 250); */
+            text-align: center;
+            color: rgb(75, 123, 28);
+        }
+
+        nav ul {
+            height: 30px;
+            /* background-color: darkgrey; */
+            text-align: center;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            font-size: 2rem
+        }
+
+        li a {
+            margin: 0 20px;
+            background-color: darkseagreen;
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+            text-decoration-line: none;
+        }
+
+        button {
+            font-size: 1.2rem;
+            background-color: rgb(251, 255, 18);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            display: flex;
+            height: 100%;
+            flex: 1;
+        }
+
+        aside {
+            width: 20%;
+            /* background-color: rgb(186, 171, 255); */
+        }
+
+        article {
+            padding: 0 20px 0 60px;
+            width: 80%;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        footer {
+            height: 70px;
+            /* background-color: darkgoldenrod; */
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 모달창 생략 -->
+    <!-- div.wrap>header+nav+section>aside+aticle+aside^footer -->
+    <div class="wrap">
+        <header>
+            <h1>게시판</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="/list">게시글</a></li>
+                <li><a href="/mypage">마이페이지</a></li>
+                <li><a href="/login">로그인</a></li>
+                <li><a href="/logout">로그아웃</a></li>
+            </ul>
+        </nav>
+        <section>
+            <article class="article">
+                게시판을 nodejs와 리액트로 구성하려 합니다.
+            </article>
+            <!-- <aside><button onclick="window.location.href='/login'">로그인</button></aside> -->
+        </section>
+        <footer>
+            <span>회사소개 개인, 개인서버동작, KYS Corp.</span>
+        </footer>
+    </div>
+</body>
+
+</html>
