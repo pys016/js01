@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background: url("https://png.pngtree.com/background/20230519/original/pngtree-wallpaper-for-summer-hd-picture-image_2665803.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      width: 50%;
+      position: relative;
+      margin: 100px auto;
+      padding-top: 40px;
+      background-color: beige;
+    }
+
+    h2 {
+      padding: 10px;
+      font-size: 2rem;
+      color: rgb(0, 255, 213);
+      background-color: rgba(0, 102, 255, 0.856);
+    }
+
+    .nadd {
+      margin: 10px;
+    }
+
+    .nadd-item {
+      display: flex;
+      align-items: center; /* 수직 정렬 */
+      padding: 5px;
+      border-bottom: 1px solid #ddd; /* 구분선
+      추가 */
+    }
+
+    .nadd-item input {
+      margin-right: 10px; /* 체크박스와 내용 사이 간격
+    조정 */
+    }
+
+    .nadd-item span {
+      flex: 1; /* 내용이 가능한 만큼 공간을 차지하게 설정
+      */
+      margin-right: 10px; /* 내용과 삭제 버튼 사이 간격 조정 */
+    }
+
+    .nadd-item button {
+      background-color: rgb(255, 170, 170);
+      border: 1px solid #fff;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+
+    #button1,
+    #button2 {
+      margin: 10px 5px;
+      padding: 5px;
+      background-color: rgba(246, 253, 138, 0.5);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid #000000;
+      border-radius: 5px;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+
+    #button3 {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 5px;
+      background-color: rgb(170, 255, 227);
+      border: 1px solid #fff;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+
+    #button2:hover,
+    #button3:hover,
+    .nadd button:hover {
+      background-color: rgb(98, 252, 201);
+    }
+
+    /*div {
+      border: 1px solid #000000;
+    }*/
+  </style>
+  <body>
+    <div class="container">
+      <button id="button3" onclick="window.location.href='/logout'">
+        로그아웃
+      </button>
+      <hr />
+      <h2>할 일 목록</h2>
+      <input type="text" /><br />
+      <button id="button1">추가하기</button>
+      <button id="button2">삭제하기</button>
+      <div class="nadd"></div>
+    </div>
+
+    <script>
+      const input = document.querySelector("input");
+      const btn = document.querySelector("#button1");
+      const deleteButton = document.querySelector("#button2");
+      const list = document.querySelector(".nadd");
+      let inputData;
+      input.addEventListener("keyup", (e) => {
+        inputData = e.currentTarget.value;
+      });
+      btn.addEventListener("click", () => {
+        if (inputData) {
+          const vdiv = document.createElement("div"); // 라인하나 추가
+          const vcheck = document.createElement("input"); // 체크박스 추가
+          const vspan = document.createElement("span"); // 추가된 내용
+          const vbutton = document.createElement("button"); // 버튼 추가
+          list.appendChild(vdiv).append(vcheck, vspan, vbutton);
+          vdiv.classList.add("nadd-item");
+          vcheck.type = "checkbox";
+          vspan.textContent = inputData;
+          vbutton.textContent = "삭제";
+          input.value = inputData = null; // 내용 비우기
+
+          vcheck.addEventListener("click", (e) => {
+            vspan.style.color = e.currentTarget.checked ? "grey" : "black"; // 색넣기
+            vspan.style.textDecoration = e.currentTarget.checked
+              ? "line-through"
+              : "none"; // 가운데 줄긋기
+            console.log(e.currentTarget.checked);
+          });
+
+          vbutton.addEventListener("click", (e) => {
+            if (e.target) list.removeChild(vdiv);
+          });
+        } else alert("내용 입력해라고");
+      });
+
+      deleteButton.addEventListener("click", () => {
+        list.innerHTML = ""; // list의 모든 자식 요소 제거
+      });
+    </script>
+  </body>
+</html>
