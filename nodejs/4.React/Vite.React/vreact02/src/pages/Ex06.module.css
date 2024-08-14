@@ -1,0 +1,13 @@
+.ex6-div {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgb(253, 117, 117);
+}
+
+.ex6-div ul li {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: aqua;
+}

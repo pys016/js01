@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자격시험</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        text-align: center;
+      }
+
+      table,
+      tr,
+      th {
+        padding: 10px 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding-left: 5px;
+        padding-right: 20px;
+      }
+
+      #vote,
+      input {
+        padding: 5px;
+      }
+
+      #rdchk {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      (과정평가형 정보처리산업기사) 지역구의원투표 프로그램 ver 2020-05
+    </header>
+    <nav>후보조회 투표하기 투표검수조회 후보자등수 홈으로</nav>
+    <h1>ㆍ투표하기ㆍ</h1>
+    <form name="frm" action="#" method="POST">
+      <table>
+        <tr>
+          <th>주민번호</th>
+          <td><input type="text" name="num" /></td>
+          <td>예 : 8906153154726</td>
+        </tr>
+        <tr>
+          <th>성명</th>
+          <td><input type="text" name="name" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>투표번호</th>
+          <td>
+            <select name="num" id="vote">
+              <option></option>
+              <option>[1]김후보</option>
+              <option>[2]이후보</option>
+              <option>[3]박후보</option>
+              <option>[4]조후보</option>
+              <option>[5]최후보</option>
+            </select>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>투표시간</th>
+          <td><input type="text" name="time" placeholder="예)0930" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>투표장소</th>
+          <td><input type="text" name="place" placeholder="예)제1투표장" /></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>유권자확인</th>
+          <td id="voterCheck" colspan="2">
+            <input type="radio" />확인 <input type="radio" />미확인
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <input
+              type="submit"
+              value="투표하기"
+              onclick=" return inputCheck()"
+            />
+            <input type="reset" value="다시하기" />
+          </th>
+        </tr>
+      </table>
+    </form>
+    <script>
+      function inputCheck() {
+        var num = document.frm.num.value;
+        var name = document.frm.name.value;
+        var time = document.frm.time.value;
+        var place = document.frm.place.value;
+        var vote = document.frm.vote.value;
+        var voterCheck = document.querySelector(
+          'input[name="voterCheck"]:checked'
+        );
+
+        if (num.length !== 13 || isNaN(num)) {
+          alert("유효하지않은 주민번호입니다.\n숫자 13자리로 입력해주세요.");
+          document.frm.num.focus();
+          return false;
+        }
+
+        if (name.trim() === "") {
+          alert("성명을 입력하세요.");
+          document.frm.name.focus();
+          return false;
+        }
+
+        if (time.trim() === "") {
+          alert("투표시간을 입력하세요.");
+          document.frm.time.focus();
+          return false;
+        }
+
+        if (place.trim() === "") {
+          alert("투표장소를 입력하세요.");
+          document.frm.place.focus();
+          return false;
+        }
+
+        if (vote === "") {
+          alert("투표번호를 선택하세요.");
+          document.frm.vote.focus();
+          return false;
+        }
+
+        if (!voterCheck) {
+          alert("유권자 확인을 선택하세요.");
+          return false;
+        }
+
+        alert("투표가 완료되었습니다.");
+        return true; // 모든 검사가 통과하면 폼이 제출됩니다.
+      }
+    </script>
+  </body>
+</html>
