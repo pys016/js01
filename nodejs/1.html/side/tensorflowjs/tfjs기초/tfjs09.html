@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.함수적 모델, 활성화 함수 API</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+</head>
+
+<body>
+    <script>
+        const input = tf.tensor1d([-123, -2, 1, 0, 5])
+        // const model = tf.layers.activation({activation: 'relu'}).apply(input)
+        // const model1 = tf.layers.activation({activation: 'relu'}).apply(model)
+        // const model2 = tf.layers.activation({activation: 'relu'}).apply(model1)
+        const model = tf.layers
+            // .activation({activation: 'relu'}) //  [0, 0, 1, 0, 5]
+            // .activation({activation: 'tanh'}) //  [-1, -0.9640276, 0.7615941, 0, 0.9999092]
+            .activation({activation: 'sigmoid'}) //  [0, 0.1192029, 0.7310586, 0.5, 0.9933072]
+            .apply(input)
+            .print(1)
+    </script>
+</body>
+
+</html>

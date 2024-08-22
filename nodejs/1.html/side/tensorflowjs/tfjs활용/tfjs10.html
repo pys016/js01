@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 모델 만들기</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"> </script>
+
+</head>
+
+<body>
+    <script>
+        /* 원시데이터 */
+        const myData = [34, 36, 38, 40, 42] // Y = kX + b
+        const myOut = [180, 190, 200, 210, 220] // Y = 5X + 10
+        /* 텐서로 변환 */
+        const tfData = tf.tensor1d(myData)
+        const tfOut = tf.tensor1d(myOut)
+
+        /* 모델 만들기, 함수적 API */
+        const x = tf.input({shape: [1]});
+        const y = tf.layers.dense({units: 28, activation: "relu"}).apply(x)
+        const z = tf.layers.dense({units: 1}).apply(y)
+        const model = tf.model({inputs: x, outputs: z})
+
+        /* 컴파일하기 */
+        const cparam = {optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError, } // metrics: "accuracy"}
+        model.compile(cparam)
+
+        /* 훈련하기 */
+        const fitParam = {
+            batchSize: 64,
+            epochs: 1000, callbacks: [tfvis.show.fitCallbacks({name: '내가 만든 데이터', tab: '훈련탭'}, ["loss"]), {
+                onEpochEnd: (epoch, logs) => {
+                    console.log(
+                        "epoch:",
+                        epoch,
+                        logs,
+                        "RMSE=>",
+                        Math.sqrt(logs.loss)
+                    );
+                }
+            }
+            ]
+        }
+        model.fit(tfData, tfOut, fitParam).then(() => {
+            tfvis.show.modelSummary({name: '내가 만든 데이터', tab: '레이어요약'}, model)
+            model.predict(tfData).print(1)
+            model.predict(tf.tensor1d([44, 45])).print(1)
+            const weights = model.getWeights()
+            console.log(weights)
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <h1>모바일 넷으로 이미지 분류</h1>
+    <input type="file" id="imageUpload" accept="image/*">
+    <img id="image" width="400" />
+    <p id="result"></p>
+    <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const image = document.getElementById('image');
+        const result = document.getElementById('result');
+
+        imageUpload.addEventListener('change', event => {
+            const file = event.target.files[0]
+            const reader = new FileReader();
+            reader.onload = async () => {
+                image.src = reader.result
+                const model = await mobilenet.load()
+                const predictions = await model.classify(image)
+                result.innerHTML = predictions.map((p, i) => `[${i + 1}] ${p.className}:${p.probability.toFixed(2) * 100}%`
+                ).join('<br/>')
+            }
+            reader.readAsDataURL(file);
+        })
+    </script>
+</body>
+
+</html>

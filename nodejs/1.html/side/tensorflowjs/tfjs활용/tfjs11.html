@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.보스턴하우스</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        body {
+            padding: 100px;
+        }
+
+        input {
+            display: none;
+        }
+
+        label {
+            padding: 10px 50px 40px 50px;
+            background-color: royalblue;
+            color: white;
+            font-size: 10rem;
+            border-radius: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <label for="fdata">+</label>
+    <input type="file" id="fdata" onchange="readExcel()">
+    <button onclick="modelRun()">분석시작</button>
+    <script>
+        const house = []
+        const medv = []
+        const readExcel = () => {
+            console.log('파일읽기시작')
+            const inputs = this.event.target.files[0]
+            const reader = new FileReader()
+            reader.onload = function () {
+                const data = reader.result
+                const workBook = XLSX.read(data, {type: "binary"})
+                const ori = workBook.Sheets.Data    // console.log(ori.A2.v, ori.A3.v, ori.A4.v)
+                for (let i = 2; i < 508; i++) {
+                    const dataArr = []
+                    const targetArr = []
+                    for (let j = 65; j < 78; j++) { // 아스키코드 A부터 M까지만 순회, N값은 결과값이라 제외
+                        const str = String.fromCharCode(j) + i // A2.. A3 ...A4
+                        dataArr.push(ori[str].v)
+                    }
+                    targetArr.push(ori['N' + i].v)
+                    house.push(dataArr) //
+                    medv.push(targetArr) //
+                }
+                console.log(house, medv)
+            }
+            reader.readAsBinaryString(inputs)
+        }
+        /* 원시데이터 */
+        const modelRun = () => {
+            const myData = house
+            const myOut = medv
+            /* 텐서로 변환 */
+            const tfData = tf.tensor(myData)
+            const tfOut = tf.tensor(myOut)
+
+            /* 모델 만들기, 함수적 API */
+            const x = tf.input({shape: [13]});
+            const y1 = tf.layers.dense({units: 32, activation: "sigmoid"}).apply(x)
+            const y2 = tf.layers.dense({units: 16, activation: "sigmoid"}).apply(y1)
+            const z = tf.layers.dense({units: 1}).apply(y2)
+            const model = tf.model({inputs: x, outputs: z})
+
+            /* 컴파일하기 */
+            const cparam = {optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError, } // metrics: "accuracy"}
+            model.compile(cparam)
+
+            /* 훈련하기 */
+            const fitParam = {
+                batchSize: 64,
+                epochs: 10, callbacks: [tfvis.show.fitCallbacks({name: '내가 만든 데이터', tab: '훈련탭'}, ["loss"]), {
+                    onEpochEnd: (epoch, logs) => {
+                        console.log(
+                            "epoch:",
+                            epoch,
+                            logs,
+                            "RMSE=>",
+                            Math.sqrt(logs.loss)
+                        );
+                    }
+                }
+                ]
+            }
+            model.fit(tfData, tfOut, fitParam).then(() => {
+                tfvis.show.modelSummary({name: '보스톤하우스 데이터셋 엑셀파일', tab: '레이어요약'}, model)
+                model.predict(tfData).print()
+            })
+        }
+    </script>
+</body>
+
+</html>

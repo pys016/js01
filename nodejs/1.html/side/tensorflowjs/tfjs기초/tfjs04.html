@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메모리관리2(tidy)</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+    <script>
+        const log = console.log
+        const t1 = tf.tensor1d([1, 2, 3])
+        log(tf.memory())
+        // t1.log().square().round().print(1) // {unreliable: false, numBytesInGPU: 24, numBytesInGPUAllocated: 40, numBytesInGPUFree: 16, numTensors: 4, …}
+
+        const result = tf.tidy(() => t1.log().square().round())
+        result.print(1)
+        log(tf.memory())
+        t1.dispose()
+        log(tf.memory())
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
